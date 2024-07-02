@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="HeaderContainer">
+        <img src="todo.svg">
+        <div>hwat<span>ToDo</span></div>
+    </div>
+
+
+    <div class="MainPageContent">
+        <div class="SideBarContainer">
+
+            <div class="home side" >
+                <img src="home.svg">
+                <div>Home</div>
+            </div>
+
+            <div class="today side">
+                <img src="calendard.svg">
+                <div>Today</div>
+            </div>
+
+            <div class="week side">
+                <img src="calendarw.svg">
+                <div>This Week</div>
+            </div>
+
+            <div class="project side">
+                <img src="label.svg">
+                <div>Projects</div>
+            </div>
+
+            <div class="AddedProjectsContainer" >
+                <div class="AddedProjectsContainer" >
+
+                </div>
+            </div>
+
+            <div class="AddProject">
+                <img src="plus.svg">
+                <div>Add Project</div>
+            </div>
+
+ 
+
+            <div class="AddNewProjectInput" style="visibility: hidden;">
+                <input class="addprojectInput">
+                <div class="ButtonsContainer">
+                    <button class="projectaddBTN">Add</button>
+                    <button class="projectcloseBTN">Close</button>
+                </div>
+            </div>
+           
+            </div>
+
+             
+
+         
+
+        <div class="AfterSideBar">
+
+            <div class="Header">
+                <div class="headerText">All Tasks</div>
+            </div>
+
+            <div class="AllTasksContainer">
+                <div class="TaskContainer High">
+                    <div class="LeftSide">
+                        <input type="checkbox">
+                        <div class="TitleAndDesc">
+                            <div class="TaskTitle">Working out</div>
+                            <div class="TaskDesc">At 3:50PM</div>
+                        </div>
+                    </div>
+                    <div class="RightSide">
+                        <div class="TaskDate">2002-03-02</div>
+                        <img src="edit.svg" class="editTask">
+                        <img src="trash.svg" class="deleteTask">
+                    </div>
+                    
+
+                </div>
+            </div>
+
+            <div class="AddTaskContainer"> 
+                <img src="plus2.svg">
+                <div class="addBTN">Add Task</div>
+            </div>
+        </div>
+            
+
+            <dialog class="Modal">
+                <label>Title: </label>
+                <input type="text" class="modalTitle">
+                <label>Description:</label>
+                <textarea class="modalDesc"></textarea>
+                <div class="Date"> 
+                    <label>Due date: </label>
+                    <input type="date" class="modalDate">
+                </div>
+            
+                <label>Priority:</label>
+                     <div class="radioButtons">
+                        <input type="radio" name="A" class="Low" checked>
+                        <label>Low</label>
+                        <div></div>
+                        <input type="radio" name="A" class="Medium">
+                        <label>Medium</label>
+                        <div></div>
+                        <input type="radio" name="A" class="High1">
+                        <label>High</label>
+                     </div>
+            
+                     <div class="ButtonsContainer">
+                        <button class="modalAddTask">Add</button>
+                        <button class="modalReset">Reset</button>
+                        <button class="modalClose">Close</button>
+                     </div>
+            </dialog>
+        </div>
+    </div>
+ 
+    
+ 
+
+<script src="index.js"></script>
+</body>
+</html>
