@@ -67,6 +67,8 @@ class Todo{
  const editTask = document.querySelector(".editTask")
  
  const ProjectTasksContainerArray=[]
+
+  
   
  
   
@@ -98,6 +100,9 @@ class Todo{
  
  
  Home.addEventListener("click",()=>{
+    for(let i=0;i<ProjectTasksContainerArray.length;i++){
+        ProjectTasksContainerArray[i].style.display="none"
+    }
      headerText.textContent="All Tasks"
      allTasksContainer.style.display=""
      document.querySelector(".AddTaskContainer").style.display=""
@@ -168,61 +173,55 @@ class Todo{
  
  
  function newProject(projectName){
-     const ProjectTaskContainer=document.createElement("div")
-        ProjectTaskContainer.classList.add("AllTaskContainer")
+    const ProjectContainer = document.createElement("div")
+    ProjectContainer.classList.add("projectContainer")
+    AddedProjectsContainer.appendChild(ProjectContainer)
+
+    const projectLeft = document.createElement("div")
+    projectLeft.classList.add("Left")
+    ProjectContainer.appendChild(projectLeft)
+
+    const tag = document.createElement("img")
+    tag.src="./pound.svg";
+
+    const projectname = document.createElement("div")
+    projectname.textContent=`${projectName}`
+
+    const projectDelete = document.createElement("img")
+    projectDelete.src="./close.svg"
+
+    projectLeft.appendChild(tag)
+    projectLeft.appendChild(projectname)
+    ProjectContainer.appendChild(projectDelete)
+
+    const ProjectTaskContainer = document.createElement("div")
+        ProjectTaskContainer.classList.add("AllTasksContainer")
+        ProjectTaskContainer.style.display="none"
+        document.querySelector(".AfterSideBar").appendChild(ProjectTaskContainer)
+
+
+    ProjectContainer.addEventListener("click",()=>{
+        for(let i=0;i<ProjectTasksContainerArray.length;i++){
+            ProjectTasksContainerArray[i].style.display="none"
+        }
+        ProjectTaskContainer.style.display=""
+        headerText.textContent=projectName
+        allTasksContainer.style.display="none"
  
-        ProjectTasksContainerArray.push(ProjectTaskContainer)
- 
- 
-         let x=0;
-     
-     const ProjectContainer = document.createElement("div")
-     ProjectContainer.classList.add("projectContainer")
-     AddedProjectsContainer.appendChild(ProjectContainer)
- 
-     const projectLeft = document.createElement("div")
-           projectLeft.classList.add("Left")
-           ProjectContainer.appendChild(projectLeft)
-     
- 
- const tag = document.createElement("img")
-     tag.src="./pound.svg";
- 
- const projectname = document.createElement("div")
-     projectname.textContent=`${projectName}`
- 
- const projectDelete = document.createElement("img")
-       projectDelete.src="./close.svg"
- 
-     projectLeft.appendChild(tag)
-     projectLeft.appendChild(projectname)
-     ProjectContainer.appendChild(projectDelete)
- 
- 
-     ProjectContainer.addEventListener("click",()=>{
-         if(x===0){
-         allTasksContainer.style.display="none"
-         ProjectTaskContainer.style.display=""
-         headerText.textContent=projectName
-         }
-         else if(x===1){
-             allTasksContainer.style.display=""
-             headerText.textContent="All Tasks"
-         }
-     })
- 
-    projectDelete.addEventListener("click",()=>{
-     x+=1
-     ProjectContainer.remove()
-     ProjectTaskContainer.remove()
-     ProjectTasksContainerArray.pop(ProjectTaskContainer)
-     allTasksContainer.style.display=""
-     headerText.textContent="All Tasks"
     })
+
+    projectDelete.addEventListener("click",()=>{
+        ProjectContainer.remove()
+        ProjectTaskContainer.remove()
+        allTasksContainer.style.display=""
+        headerText.textContent="All Tasks"
+    })
+
+    
      
  
  
- 
+ ProjectTasksContainerArray.push(ProjectTaskContainer)
  }
  
  
@@ -232,11 +231,16 @@ class Todo{
  function AddNewToDo(toDO){
      const newTaskContainer = document.createElement("div")
            newTaskContainer.classList.add("TaskContainer")
- 
+
+    const AllTaskNewTask=document.createElement("div")
+          AllTaskNewTask.classList.add("TaskContainer")
+
+    
      
      const newLeftSide = document.createElement("div")
            newLeftSide.classList.add("LeftSide");
            newTaskContainer.appendChild(newLeftSide)
+       
  
      const checkBox = document.createElement("INPUT")
          checkBox.setAttribute("type", "checkbox");
@@ -261,6 +265,7 @@ class Todo{
      const newRightSide = document.createElement("div")
          newRightSide.classList.add("RightSide")
          newTaskContainer.appendChild(newRightSide)
+       
  
          
      const newDate = document.createElement("div")
@@ -278,30 +283,95 @@ class Todo{
          newDelete.src="./trash.svg"
          newRightSide.appendChild(newDelete)
         
+
+    const AllnewLeftSide = document.createElement("div")
+         AllnewLeftSide.classList.add("LeftSide");
+         AllTaskNewTask.appendChild(AllnewLeftSide)
+     
+
+   const AllcheckBox = document.createElement("INPUT")
+       AllcheckBox.setAttribute("type", "checkbox");
+       AllnewLeftSide.appendChild(AllcheckBox)
+
+   const AllnewTitleAndDesc = document.createElement("div")
+         AllnewTitleAndDesc.classList.add("TitleAndDesc")
+         AllnewLeftSide.appendChild(AllnewTitleAndDesc)
+
+   const AllnewTaskTitle = document.createElement("div")
+         AllnewTaskTitle.classList.add("TaskTitle")
+         AllnewTaskTitle.textContent=`${toDO.Title}`
+
+   const AllnewTaskDesc = document.createElement("div")
+         AllnewTaskDesc.classList.add("TaskDesk")
+         AllnewTaskDesc.textContent=`${toDO.Desc}`
+
+         AllnewTitleAndDesc.appendChild(AllnewTaskTitle)
+         AllnewTitleAndDesc.appendChild(AllnewTaskDesc)
+
+
+   const AllnewRightSide = document.createElement("div")
+       AllnewRightSide.classList.add("RightSide")
+       AllTaskNewTask.appendChild(AllnewRightSide)
+     
+
+       
+   const AllnewDate = document.createElement("div")
+         AllnewDate.classList.add("TaskDate")
+         AllnewDate.textContent=`${toDO.Date}`
+         AllnewRightSide.appendChild(AllnewDate)
+   
+   const AllnewEdit = document.createElement("img")
+        AllnewEdit.classList.add("editTask")
+        AllnewEdit.src="./edit.svg"
+        AllnewRightSide.appendChild(AllnewEdit)
+
+   const AllnewDelete = document.createElement("img")
+       AllnewDelete.classList.add("deleteTask")
+       AllnewDelete.src="./trash.svg"
+       AllnewRightSide.appendChild(AllnewDelete)
+
+
          if(toDO.Priority==="low"){
              newTaskContainer.classList.remove("Low","Medium","High")
              newTaskContainer.classList.add("Low")
+            AllTaskNewTask.classList.remove("Low","Medium","High")
+            AllTaskNewTask.classList.add("Low")
       
           }
      
           if(toDO.Priority==="medium"){
              newTaskContainer.classList.remove("Low","Medium","High")
              newTaskContainer.classList.add("Medium")
+             AllTaskNewTask.classList.remove("Low","Medium","High")
+             AllTaskNewTask.classList.add("Medium")
       
           }
      
           if(toDO.Priority==="high"){
              newTaskContainer.classList.remove("Low","Medium","High")
              newTaskContainer.classList.add("High")
+             AllTaskNewTask.classList.remove("Low","Medium","High")
+             AllTaskNewTask.classList.add("High")
           }
  
  
           newDelete.addEventListener("click",()=>{
              newTaskContainer.remove()
+             AllTaskNewTask.remove()
           })
           
-  
-         allTasksContainer.appendChild(newTaskContainer) //here write the code to append the task to other projects container later
+          
+                
+    
+
+          allTasksContainer.appendChild(AllTaskNewTask)
+
+         for(let i=0;i<ProjectTasksContainerArray.length;i++){
+            if(ProjectTasksContainerArray[i].style.display===""){
+                ProjectTasksContainerArray[i].appendChild(newTaskContainer)
+            }
+         }
+       
          
  }
  
