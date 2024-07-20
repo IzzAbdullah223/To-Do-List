@@ -362,6 +362,7 @@ class Todo{
 
           AllnewDelete.addEventListener("click",()=>{
             AllTaskNewTask.remove()
+            newTaskContainer.remove()
           })
           
           
