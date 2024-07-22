@@ -217,6 +217,8 @@ class Todo{
         headerText.textContent="All Tasks"
     })
 
+    console.log(ProjectContainer)
+
     
      
  
